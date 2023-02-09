@@ -1,0 +1,45 @@
+<div class="container">
+    <div class="row justify-content-center mt-5">
+        <div class="col-sm-6 col-lg-4">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title text-center">Iniciar Sesión</h2>
+                    <form [formGroup]="loginForm" (ngSubmit)="login()">
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Usuario</label>
+                            <input  formControlName="username" class="form-control"
+                                    [ngClass]="username.errors && (username.dirty || username.touched) ? 'is-invalid': ''">
+                            <div *ngIf="username.hasError('required')" class="invalid-feedback">
+                                Este campo es requerido 
+                            </div>
+                            
+                        </div>
+                        <div class="mb-3">
+                          <label for="exampleInputPassword1" class="form-label">Contraseña</label>
+                          <input type="password" formControlName="password" class="form-control"
+                            [ngClass]="password.errors && (password.dirty || password.touched) ? 'is-invalid': ''">
+                            <div *ngIf="password.hasError('required')" class="invalid-feedback">
+                                Este campo es requerido
+                            </div>
+                            <div *ngIf="password.hasError('minlength')" class="invalid-feedback">
+                                Mínimo 6 caracteres para la contraseña
+                            </div>
+                        </div>
+                       
+                    
+                        <div class="row justify-content-center text-center">
+                            <div class="col-md-6">
+                                <button type="submit" [disabled]="loginForm.invalid" class="btn btn-dark w-100">Ingresar</button>
+                            </div>
+                        </div>
+                        
+                    </form>
+                  
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    
+</div>
+ 

@@ -1,0 +1,32 @@
+<div class="container border">
+    <div class="row">
+        <h1>Chat</h1>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div class="card text-center">
+                <div class="card-header">
+                  Featured
+                </div>
+                <div class="card-body container-messages">
+                  <div class="row" *ngFor="let msg of messageList" 
+                        [ngClass]="msg.sender == idUser ? 'justify-content-end border-primary' : 'justify-content-start'">
+                    <div class="card col-md-8 m-2 border-success ">
+                        <p>{{msg.content}} </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-footer">
+                    <form [formGroup]="newMessageForm" (ngSubmit)="sendMessage()">
+                        <div class="input-group">
+                            <textarea class="form-control" (keyup.enter)="sendMessage()" formControlName="content" aria-label="With textarea"></textarea>
+                            <span class="input-group-text"><button type="submit" class="btn btn-primary">Enviar</button></span>
+                        </div>
+                    </form>
+                    
+                </div>
+              </div>
+        </div>
+    </div>
+</div>

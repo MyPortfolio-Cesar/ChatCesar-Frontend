@@ -1,0 +1,55 @@
+<app-navbar></app-navbar>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-10">
+            <h1>Mi perfil</h1>
+        </div>
+    </div>
+    <div class="row justify-content-end">
+        <div class="col-md-2">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" (change)="checkChange($event)" [checked]="isEditable">
+                <label class="form-check-label">
+                  Editar
+                </label>
+              </div>
+        </div>
+    </div>
+    <div class="row border">
+        <div class="col text-center">
+            <img style="height: 250px; width: 200px" src="https://cdn3.vectorstock.com/i/1000x1000/30/97/flat-business-man-user-profile-avatar-icon-vector-4333097.jpg" alt="">
+        </div>
+        <div class="col">
+            <form [formGroup]="editForm" (ngSubmit)="editProfile()">
+                <div class="mb-2">
+                    <label class="form-label">Nombre Completo</label>
+                    <input  formControlName="fullname" class="form-control"
+                            [ngClass]="fullname.errors && (fullname.dirty || fullname.touched) ? 'is-invalid': ''">
+                    <div *ngIf="fullname.hasError('required')" class="invalid-feedback">
+                        Este campo es requerido 
+                    </div>
+                </div>
+                <div class="mb-2">
+                    <label class="form-label">Nombre de Usuario</label>
+                    <input  formControlName="username" class="form-control"
+                            [ngClass]="username.errors && (username.dirty || username.touched) ? 'is-invalid': ''">
+                    <div *ngIf="username.hasError('required')" class="invalid-feedback">
+                        Este campo es requerido 
+                    </div>
+                </div>
+                <div class="mb-2">
+                    <label class="form-label">Email</label>
+                    <input  formControlName="email" class="form-control"
+                            [ngClass]="email.errors && (email.dirty || email.touched) ? 'is-invalid': ''">
+                    <div *ngIf="email.hasError('required')" class="invalid-feedback">
+                        Este campo es requerido 
+                    </div>
+                </div>
+                <div *ngIf="isEditable" class="mb-2 text-center">
+                    <button class="btn btn-primary" type="submit">Editar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

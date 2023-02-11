@@ -1,0 +1,37 @@
+<app-navbar></app-navbar>
+<div class="container">
+    <div class="row">
+        <h1>Solicitudes</h1>
+        <hr>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Enviadas</h2>
+            <hr>
+            <div class="col">
+                <ul class="list-group">
+                    <li *ngFor="let rsend of requestSentList; let i = index" class="list-group-item d-flex justify-content-between align-items-center">
+                      {{rsend.to.fullname}}
+                      <span class="badge badge-primary badge-pill"><button (click)="deleteFriendRequest(rsend._id, i, 'sent')" class="btn btn-danger">Cancel</button></span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <h2>Recibidas</h2>
+            <hr>
+            <div class="col-md-10">
+                <app-progress-bar *ngIf="progress_bar_accept_request"></app-progress-bar>
+                <ul class="list-group">
+                    <li *ngFor="let rrec of requestReceivedList; let i = index" class="list-group-item d-flex justify-content-between align-items-center">
+                      {{rrec.from.fullname}}
+                      <span class="badge badge-primary badge-pill"><button (click)="acceptFriendRequest(rrec, i)" class="btn btn-primary">Accept</button></span>
+                      <span class="badge badge-primary badge-pill"><button (click)="deleteFriendRequest(rrec._id, i, 'received')" class="btn btn-danger">Deny</button></span>
+                    </li>
+                </ul>
+            </div> 
+            
+        </div>
+    </div>
+
+</div>

@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { SockerwebService } from './sockerweb.service';
+import { FriendRequestService } from './friend-request.service';
 
-describe('SockerwebService', () => {
-  let service: SockerwebService;
+describe('FriendRequestService', () => {
+  let service: FriendRequestService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(SockerwebService);
+    service = TestBed.inject(FriendRequestService);
   });
 
   it('should be created', () => {

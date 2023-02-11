@@ -11,20 +11,37 @@ import { ChatComponent } from './components/chat/chat.component';
 import { CookieService } from 'ngx-cookie-service';
 import { LoginComponent } from './components/login/login.component';
 import { HttpClientModule } from '@angular/common/http';
+import { NavbarComponent } from './components/shared/navbar/navbar.component';
+import { ProgressBarComponent } from './components/shared/progress-bar/progress-bar.component';
+import { RequestsHomeComponent } from './components/requests-home/requests-home.component';
+import { ContactBookComponent } from './components/contact-book/contact-book.component';
+import { ProfileComponent } from './components/profile/profile.component';
+
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NotificationsComponent } from './components/notifications/notifications.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     ChatComponent,
-    LoginComponent
+    LoginComponent,
+    NavbarComponent,
+    ProgressBarComponent,
+    RequestsHomeComponent,
+    ContactBookComponent,
+    ProfileComponent,
+    NotificationsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
   ],
   providers: [CookieService],
   bootstrap: [AppComponent]

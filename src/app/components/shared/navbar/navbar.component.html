@@ -1,0 +1,53 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-dark mb-3">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Navbar</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapse" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse " id="navbarText">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" routerLink="/home">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" routerLink="/requests-home">Solicitudes</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" routerLink="/contact-book">Libro de Contactos</a>
+          </li>
+          <li class="nav-item dropdown dropdown-menu-end">
+            <a class="nav-link active dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown"  aria-current="page" >Notificaciones
+              <span *ngIf="notificationListNoSeen.length>0" class="badge bg-secondary">{{notificationListNoSeen.length}}</span></a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li *ngFor="let noti of notificationListNoSeen">
+                  <a class="dropdown-item cursor-pointer" (click)="goToNotification(noti)">{{noti.content}}</a>
+                </li>
+                <li *ngIf="notificationListNoSeen.length > 0"><hr class="dropdown-divider"></li>
+                <li >
+                  <a class="dropdown-item" routerLink="/notifications">Ver todos</a>
+                </li>
+              </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link active dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown"  aria-current="page" >
+              {{userInfo.fullname}}
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li>
+                <a routerLink="/profile" class="dropdown-item" >Ver Perfil</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#">Cerrar sesión</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <span>
+          
+        </span>
+        <span class="navbar-text " (click)="logout()">
+            <a class="nav-link cursor-pointer" >Cerrar sesión</a>
+        </span>
+      </div>
+    </div>
+  </nav>

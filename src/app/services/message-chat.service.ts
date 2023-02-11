@@ -1,12 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MessageChatService {
 
-  private uri: string = 'https://myapp-cesar-service.onrender.com/messages-chat'
+  
+  private uri: string = `${environment.BACKEND_NODE_URL}/messages`
   constructor(
     private http: HttpClient
   ) { }

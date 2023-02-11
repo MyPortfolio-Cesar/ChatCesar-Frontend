@@ -1,12 +1,16 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ChatService {
 
-  private uri: string = 'https://myapp-cesar-service.onrender.com/chats'
+  titleChat: string = '';
+
+  private uri: string = `${environment.BACKEND_NODE_URL}/chats`
+
   constructor(
     private http: HttpClient
   ) { }
@@ -17,6 +21,10 @@ export class ChatService {
 
   getChat(id: any){
     return this.http.get(`${this.uri}/${id}`);
+  }
+
+  createChat(obj: any){
+    return this.http.post(`${this.uri}`, obj);
   }
 
   

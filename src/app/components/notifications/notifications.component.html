@@ -1,7 +1,16 @@
 <app-navbar></app-navbar>
 
 <div class="container">
-    <div class="row">
+    <div class="row justify-content-center">
         <h1>Notificaciones</h1>
+        <hr>
+        <div class="col-md-10">
+            <div class="list-group">
+                <a *ngFor="let noti of notificationList" [routerLink]="noti.redirectURL" class="list-group-item list-group-item-action list-group-item-warning">
+                    {{noti.content}}
+                </a>
+            </div>
+        </div>
     </div>
+    
 </div>

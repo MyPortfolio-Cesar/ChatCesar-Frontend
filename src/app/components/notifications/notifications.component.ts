@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { INotification } from 'src/app/interfaces/INotification';
+import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
   selector: 'app-notifications',
@@ -7,9 +10,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NotificationsComponent implements OnInit {
 
-  constructor() { }
+  progress_bar:boolean = false;
+  userInfo = JSON.parse(localStorage.getItem('user') || '');
+  notificationList: INotification[] = [];
+  constructor(
+    private notificationService: NotificationService,
+    private router: Router
+  ) { }
 
-  ngOnInit(): void {
+  async ngOnInit() {
+    await this.getNotifications();
+  }
+
+  getNotifications(){
+    return new Promise<void>((resolve)=> {
+      this.notificationService.getNotificationByUser(this.userInfo._id).subscribe((res:any)=> {
+        console.log('res', res)
+        this.notificationList = res.data;
+      })
+    })
   }
 
 }

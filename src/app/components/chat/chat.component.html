@@ -8,8 +8,11 @@
         <app-progress-bar *ngIf="progress_bar"></app-progress-bar>
         <div class="col-md-10">
             <div class="card text-center">
-                <div class="card-header bg-dark text-white">
-                  {{otherUser?.fullname}}
+                <div class="card-body bg-dark text-white">
+                  {{otherUser?.fullname}} 
+                    <span class="badge float-end" [ngClass]="isOnline ? 'bg-success' : 'bg-secondary'">
+                        {{isOnline ? 'En linea' : 'Desconectado'}}
+                    </span>
                 </div>
                 <div #scrollMe class="card-body container-messages">
                   <div class="row" *ngFor="let msg of messageList" 
@@ -23,7 +26,7 @@
                 <div class="card-footer">
                     <form [formGroup]="newMessageForm" (ngSubmit)="sendMessage()">
                         <div class="input-group">
-                            <textarea class="form-control" (keyup.enter)="sendMessage()" formControlName="content" aria-label="With textarea"></textarea>
+                            <textarea class="form-control" (keydown.enter)="sendMessage()" formControlName="content" aria-label="With textarea"></textarea>
                             <span class="input-group-text"><button type="submit" class="btn btn-primary">Enviar</button></span>
                         </div>
                     </form>

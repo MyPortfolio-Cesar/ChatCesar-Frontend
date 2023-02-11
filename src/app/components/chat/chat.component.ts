@@ -29,6 +29,7 @@ export class ChatComponent implements OnInit, AfterViewChecked {
   user: any = JSON.parse(localStorage.getItem('user') || '');
   idUser: any;
   messageList: any[] = [];
+  isOnline: boolean = false;
 
   progress_bar: boolean = false;
   constructor(
@@ -42,6 +43,16 @@ export class ChatComponent implements OnInit, AfterViewChecked {
     socketWebService.callback.subscribe(res => {
       console.log('res', res)
       this.messageList.push(res);
+      this.isOnline = true;
+    });
+    socketWebService.callbackDisconnect.subscribe(res => {
+      console.log('disco', res);
+      this.isOnline = res.isOnline;
+    })
+
+    socketWebService.callbackInChat.subscribe(res => {
+      console.log('in chat', res)
+      this.isOnline = res.isOnline;
     })
    }
    ngAfterViewChecked() {        
@@ -60,8 +71,8 @@ export class ChatComponent implements OnInit, AfterViewChecked {
     localStorage.setItem('chatid', this.chatid)
     this.newMessageForm = this._builderForm();
     this.getChat();
-    this.titleChat = this.chatService.titleChat
-    // this.cookieService.set('chat', this.chatid);
+    // this.titleChat = this.chatService.titleChat;
+    this.socketWebService.emitEventInChat({isOnline: true});
 
   }
 
@@ -111,6 +122,5 @@ export class ChatComponent implements OnInit, AfterViewChecked {
       
     })
 
-    console.log(this.newMessage)
   }
 }

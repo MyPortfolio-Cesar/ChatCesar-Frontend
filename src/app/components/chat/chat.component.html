@@ -6,7 +6,7 @@
 
     <div class="row justify-content-center">
         <app-progress-bar *ngIf="progress_bar"></app-progress-bar>
-        <div class="col-md-10">
+        <div class="col-md-8">
             <div class="card text-center">
                 <div class="card-body bg-dark text-white">
                   {{otherUser?.fullname}} 
@@ -17,8 +17,8 @@
                 <div #scrollMe class="card-body container-messages">
                   <div class="row" *ngFor="let msg of messageList" 
                         [ngClass]="msg.user == idUser ? 'justify-content-end ' : 'justify-content-start'">
-                    <div class="card col-md-8 m-2 "
-                        [ngClass]="msg.user == idUser ? 'bg-primary text-white shadow-sm' : 'bg-light shadow-sm'">
+                    <div class="card col-auto m-2" style="max-width: 75%;"
+                        [ngClass]="msg.user == idUser ? 'bg-primary text-white shadow-sm' : 'bg-secondary text-white shadow-sm'">
                         <p class="text-message">{{msg.content}} </p>
                     </div>
                   </div>

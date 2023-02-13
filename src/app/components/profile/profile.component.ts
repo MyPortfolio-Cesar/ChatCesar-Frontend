@@ -14,6 +14,8 @@ export class ProfileComponent implements OnInit {
   userID = JSON.parse(localStorage.getItem('user') || '')._id;
   userInfo: any;
   isEditable: boolean = false;
+  progress_bar: boolean = false;
+  progress_bar_edit_profile: boolean = false;
   constructor(
     private _formBuilder: FormBuilder,
     private userService: UserService
@@ -53,6 +55,7 @@ export class ProfileComponent implements OnInit {
   }
 
   getUserInfo(){
+    this.progress_bar = true;
     return new Promise<void>((resolve) => {
       this.userService.getUserInfo(this.userID).subscribe((res:any) => {
         console.log('res', res)
@@ -60,12 +63,14 @@ export class ProfileComponent implements OnInit {
         this.fullname.setValue(this.userInfo.fullname);
         this.username.setValue(this.userInfo.username);
         this.email.setValue(this.userInfo.email);
+        this.progress_bar = false;
         resolve();
       })
     })
   }
 
   editProfile(){
+    this.progress_bar_edit_profile = true;
     let obj: IUser = {
       fullname: this.fullname.value,
       email: this.email.value,
@@ -73,8 +78,12 @@ export class ProfileComponent implements OnInit {
     }
     this.userService.updateUser(this.userInfo._id, obj).subscribe(res => {
       console.log('user updated', res);
-      alert('user updated')
+      this.fullname.disable();
+      this.username.disable();
+      this.email.disable();
+      alert('User updated');
       this.isEditable = false;
+      this.progress_bar_edit_profile = false;
     })
   }
 

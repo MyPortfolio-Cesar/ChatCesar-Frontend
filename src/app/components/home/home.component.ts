@@ -41,6 +41,7 @@ export class HomeComponent implements OnInit {
   }
 
   getUsers(){
+    this.progress_bar = true;
     return new Promise<any>((resolve, reject) => {
       this.userService.getUsers().subscribe((res:any) => {
         console.log('res', res)
@@ -50,8 +51,8 @@ export class HomeComponent implements OnInit {
   }
 
   getAllOtherUsers(){
+    this.progress_bar = true;
     return new Promise<void>((resolve, reject) => {
-      this.progress_bar = true;
       this.userService.getAllOtherUsers(this.userInfo._id).subscribe((res:any) => {
         console.log('users', res)
         this.userList = res.data;

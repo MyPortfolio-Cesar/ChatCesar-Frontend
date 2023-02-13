@@ -23,10 +23,12 @@ export class NotificationsComponent implements OnInit {
   }
 
   getNotifications(){
+    this.progress_bar = true;
     return new Promise<void>((resolve)=> {
       this.notificationService.getNotificationByUser(this.userInfo._id).subscribe((res:any)=> {
         console.log('res', res)
         this.notificationList = res.data;
+        this.progress_bar = false;
       })
     })
   }

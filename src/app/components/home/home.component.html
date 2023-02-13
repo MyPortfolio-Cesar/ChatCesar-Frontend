@@ -6,12 +6,14 @@
             <hr>
         </div>
         <div class="row">
+            <app-progress-bar *ngIf="progress_bar"></app-progress-bar>
             <div class="col-md-5 m-1" *ngFor="let user of userList; let i = index">
                 <div class="card" style="width: 18rem;">
                     <div class="card-body">
                       <h5 class="card-title">{{user.fullname}}</h5>
                       <h6 class="card-subtitle mb-2 text-muted">{{user.username}}</h6>
                       <p class="card-text">{{user.email}}</p>
+                      <span *ngIf="user.status === 'ACCEPTED'" class="badge bg-success">Amigos</span>
                       <button *ngIf="!user.status"  class="btn btn-sm btn-primary card-link" (click)="createRequest(user, i)">Add friend</button>
                       <button *ngIf="user.status === 'PENDING'"  class="btn btn-sm btn-primary card-link" disabled>Solicitado</button>
                       <!-- <a href="#" class="card-link">Card link</a>

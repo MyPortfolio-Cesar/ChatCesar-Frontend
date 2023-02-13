@@ -20,6 +20,8 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NotificationsComponent } from './components/notifications/notifications.component';
+import { RegisterComponent } from './components/register/register.component';
+import { NoDataComponent } from './components/no-data/no-data.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { NotificationsComponent } from './components/notifications/notifications
     RequestsHomeComponent,
     ContactBookComponent,
     ProfileComponent,
-    NotificationsComponent
+    NotificationsComponent,
+    RegisterComponent,
+    NoDataComponent
   ],
   imports: [
     BrowserModule,

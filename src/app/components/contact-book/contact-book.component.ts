@@ -13,6 +13,7 @@ export class ContactBookComponent implements OnInit {
 
   userInfo= JSON.parse(localStorage.getItem('user') || '');
   myContactBook: any;
+  progress_bar: boolean = false;
   constructor(
     private contactBookService: ContactBookService,
     private chatService: ChatService,
@@ -24,11 +25,13 @@ export class ContactBookComponent implements OnInit {
   }
 
   getMyContactBook(){
+    this.progress_bar = true;
     return new Promise<void>((resolve)=> {
       this.contactBookService.getMyContactBook(this.userInfo._id).subscribe((res:any) => {
         console.log('mybook', res);
         this.myContactBook = res.data;
-      })
+      });
+      this.progress_bar = false;
       resolve();
     })
   }

@@ -18,6 +18,7 @@ export class AuthGuard implements CanActivate {
     if(token){
       return true;
     }else{
+      alert('Debe iniciar sesión!')
       this.router.navigateByUrl('/login');
       return false;
     }

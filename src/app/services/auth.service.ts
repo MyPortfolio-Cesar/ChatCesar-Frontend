@@ -18,6 +18,10 @@ export class AuthService {
     return this.http.post(`${this.uri}/sign-in`, user);
   }
 
+  register(newUser:any){
+    return this.http.post(`${this.uri}/sign-up`, newUser);
+  }
+
   logout(){
     localStorage.removeItem('token');
     localStorage.removeItem('user');

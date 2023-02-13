@@ -34,14 +34,14 @@ export class NavbarComponent implements OnInit {
    }
 
   async ngOnInit(){
-    console.log(this.userInfo)
+    // console.log(this.userInfo)
     await this.getNotificationsByUser();
   }
 
   async getNotificationsByUser(){
     return new Promise<void>((resolve) => {
       this.notificationService.getNotificationByUser(this.userInfo._id).subscribe((res:any) => {
-        console.log('res', res);
+        // console.log('res', res);
         this.notificationList = res.data;
         this.notificationListNoSeen = this.notificationList.filter(n => {
           return n.seen === false;

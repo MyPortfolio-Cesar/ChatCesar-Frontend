@@ -16,6 +16,7 @@ export class RequestsHomeComponent implements OnInit {
 
   userInfo = JSON.parse(localStorage.getItem('user') || '');
   progress_bar_accept_request:boolean = false;
+  progress_bar: boolean = false;
   requestSentList: any[] = [];
   requestReceivedList: any[] = [];
   constructor(
@@ -32,6 +33,7 @@ export class RequestsHomeComponent implements OnInit {
   }
 
   async getRequestsSent(){
+    this.progress_bar = true;
     return new Promise<void>((resolve, reject) => {
       this.friendRequestService.getRequestsByFrom(this.userInfo._id).subscribe((res:any) => {
         console.log('enviadas', res);
@@ -52,6 +54,7 @@ export class RequestsHomeComponent implements OnInit {
         this.requestReceivedList =  this.requestReceivedList.filter(r => {
           return r.status === 'PENDING'
         })
+        this.progress_bar = false;
         resolve();
       })
     })
@@ -99,6 +102,7 @@ export class RequestsHomeComponent implements OnInit {
             this.notificationService.createNotification(obj).subscribe(res => {
               this.progress_bar_accept_request = false;
               this.socketWebService.emitEventNotification(obj);
+              this.requestReceivedList.splice(index, 1);
               alert('Se agregó a tus amigos')
             })
           })
